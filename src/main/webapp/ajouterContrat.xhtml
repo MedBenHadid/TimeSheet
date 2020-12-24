@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://xmlns.jcp.org/jsf/html"
+xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+xmlns:f="http://xmlns.jcp.org/jsf/core"
+xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+<ui:include src="header.xhtml" />
+
+
+<h:panelGroup columns="3">
+
+<h:form>
+<h:dataTable value="#{contratController.contrats}" var="contrat" border="1">
+<h:column>
+<f:facet name="header">
+<h:outputText value="id" />
+
+</f:facet>
+
+<h:outputText value="#{contrat.id}" />
+
+</h:column>
+<h:column>
+<f:facet name="header">
+<h:outputText value="Employe" />
+
+</f:facet>
+
+<h:outputText value="#{contrat.employe.nom}" />
+
+</h:column>
+<h:column>
+<f:facet name="header">
+<h:outputText value="typeContrat" />
+
+</f:facet>
+
+<h:outputText value="#{contrat.typeContrat}" />
+
+</h:column>
+<h:column>
+<f:facet name="header">
+<h:outputText value="Salaire" />
+
+</f:facet>
+
+<h:outputText value="#{contrat.salaire}" />
+
+</h:column>
+
+<h:column>
+<f:facet name="header">
+<h:outputText value="DateDebut" />
+
+</f:facet>
+
+<h:outputText value="#{contrat.dateDebut}" />
+
+</h:column>
+
+</h:dataTable>
+</h:form>
+</h:panelGroup>
+
+
+
+
+
+
+
+
+
+
+
+<h:panelGroup columns="2">
+
+<h:form>
+<table>
+<tr>
+<td><h:outputText value="Employe"></h:outputText></td>
+<h:message for="select" style="color:red" />
+
+<td><h:selectOneMenu id="select" value="#{contratController.selectedEmployeId}">
+<f:selectItems value="#{contratController.employes}" var="employe" itemValue="#{employe.id}" itemLabel="#{employe.prenom} #{employe.nom}"/>
+</h:selectOneMenu></td>
+</tr>
+<tr>
+<td><h:outputText value="dateDebut"></h:outputText></td>
+
+<td><h:inputText id="date" value="#{contratController.dateDebut}">
+	<f:convertDateTime pattern="dd-MM-yyyy" />
+</h:inputText></td>
+<td><h:message for="date" style="color:red" /></td>
+
+</tr>
+<tr>
+<td><h:outputText value="salaire"></h:outputText></td>
+
+<td><h:inputText id="salaire" value="#{contratController.salaire}"></h:inputText></td>
+</tr>
+
+<tr>
+<td><h:outputText value="typeContrat"></h:outputText></td>
+
+<td><h:inputText value="#{contratController.typeContrat}"></h:inputText></td>
+
+</tr>
+<tr>
+<td >
+<h:commandButton value="Ajouter Contrat" action="#{contratController.ajouterContrat()}" />
+</td>
+
+</tr>
+</table>
+</h:form>
+</h:panelGroup>
+
+</html>
